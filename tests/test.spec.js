@@ -108,7 +108,7 @@ test.only("Assertions for chkbox, Dropdown", async({browser})=>
       // await page.locator("#terms").click();
 
        expect(page.locator("#terms")).not.toBeChecked();
-           await page.pause();
+          // await page.pause();
            
 
      }  
