@@ -109,6 +109,8 @@ test.only("Assertions for chkbox, Dropdown", async({browser})=>
 
        expect(page.locator("#terms")).not.toBeChecked();
           // await page.pause();
+		  //commented paush the update Commands
+		  //this is the git testing
            
 
      }  
