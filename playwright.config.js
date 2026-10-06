@@ -10,7 +10,7 @@ export default defineConfig({
 
   use: {
     channel: 'chrome',
-    headless: false,
+    headless: true,
 
     // Use the actual browser window size
     viewport: null,
