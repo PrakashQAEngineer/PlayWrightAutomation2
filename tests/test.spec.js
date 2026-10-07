@@ -89,7 +89,7 @@ test("Extract Multiple WebElement", async({browser})=>
      }
 );
 
-test.only("Assertions for chkbox, Dropdown", async({browser})=>
+test("Assertions for chkbox, Dropdown", async({browser})=>
      {
         const context = await browser.newContext();
         const page = await context.newPage();
@@ -114,6 +114,43 @@ test.only("Assertions for chkbox, Dropdown", async({browser})=>
            
         //this is the develop branch commit
 
+        const blink = page.locator("a[href*='documents-request']");
+        await expect(blink).toHaveAttribute("class","blinkingText");
+        await page.pause();
+
+
+
      }  
 );
 
+test.only("Handling the child window", async({browser})=>
+  {
+    const context = await browser.newContext();
+    const page = await context.newPage();
+
+    await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
+
+   const blink = page.locator("a[href*='documents-request']");
+        await expect(blink).toHaveAttribute("class","blinkingText");
+        
+        //execution of below program is from right to left
+        const [page2] = await Promise.all([context.waitForEvent("page"),blink.click()]); 
+         const childtitle = await page2.title();
+        console.log(childtitle);
+
+        const parentpage = await page.title();
+        console.log(parentpage);
+
+        const childtitlee = await page2.title();
+        console.log(childtitlee);
+
+        const user = await page2.locator(".red").textContent()
+        const usern = user.split("at")[1].split("with")[0].trim();
+        console.log(usern);
+
+        const userenter = page.locator("input[id='username']");
+        await userenter.fill(usern);
+        console.log("The enterd text is: "+await userenter.inputValue());
+
+  }
+);
